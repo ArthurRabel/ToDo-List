@@ -1,3 +1,5 @@
+## Preparando podman
+
 Criar image 
 
 > podman build -t djangoimg .
