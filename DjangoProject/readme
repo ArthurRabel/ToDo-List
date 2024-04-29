@@ -1,0 +1,7 @@
+Criar image 
+
+> podman build -t djangoimg .
+
+Rodar/Criar container 
+
+> podman run -it -p 8000:8000 --name djangoproject localhost/djangoimg

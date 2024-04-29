@@ -1,0 +1,15 @@
+Criar image 
+
+> podman build -t psqltest .
+
+Rodar/criar container 
+
+> podman run -it -p 5432:5432 --name containerpsqlteste localhost/psqltest
+
+Interagir com container com bash
+
+> podman exec -it containerpsqlteste bash
+
+Entrar no usuario postgres rabelo
+
+> psql -U rabelo -d db_teste
