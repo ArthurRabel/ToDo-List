@@ -50,31 +50,29 @@ podman build -t djangoimage .
 podman run --network=minharede -it -p 8000:8000 --name djangocontainer djangoimage
 ```
 
-## Iniciar projeto
+## Rodar o projeto
 
-### Container DB PostgreSql 
-
-- Rodar o container
+- Rodar o container PostgreSql
 
 ```bash
 podman start psqlcontainer 
 ```
 
-- Interagir via terminal com container
-
-```bash
-podman exec -it psqlcontainer bash
-```
-
-### Container Django
-
-- Rodar o container
+- Rodar o container Django
 
 ```bash
 podman start djangocontainer 
 ```
 
-- Interagir via terminal com container
+## Interagir com os containers via terminal
+
+- Interagir via terminal com container PostgreSql
+
+```bash
+podman exec -it psqlcontainer bash
+```
+
+- Interagir via terminal com container Django
 
 ```bash
 podman exec -it djangocontainer bash
