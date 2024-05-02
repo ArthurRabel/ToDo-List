@@ -2,7 +2,7 @@
 
 ### Criando a rede
 
-A aplicação constitui de dois containers, aplicação django e banco de dados postgreSql, para ambos containers poderem comunicar entre si, é necessario criar uma rede.
+A aplicação consiste em dois containers: um contendo a aplicação Django e outro contendo o banco de dados PostgreSQL. Para permitir a comunicação entre esses containers, é necessário criar uma rede.
 
 ```bash
 podman network create minharede
