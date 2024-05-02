@@ -1,0 +1,3 @@
+[console_scripts]
+podman-compose = podman_compose:main
+

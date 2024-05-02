@@ -2,7 +2,7 @@ FROM python:3.12.3
 
 WORKDIR /mysite
 
-RUN python3 -m pip install Django
+RUN pip install Django psycopg
 
 COPY . .
 
