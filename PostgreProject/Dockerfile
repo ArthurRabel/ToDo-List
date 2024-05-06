@@ -1,7 +1,5 @@
 FROM postgres:latest
 
-WORKDIR /PostgreProject
-
 ENV POSTGRES_USER admin
 ENV POSTGRES_PASSWORD 123456
 ENV POSTGRES_DB db_teste

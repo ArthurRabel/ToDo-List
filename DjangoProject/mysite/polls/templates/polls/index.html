@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do list</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <main>
+        <form class="c-form base" action="{% url 'push' %}" method="post">
+            {% csrf_token %}
+            <input type="text" name="title" placeholder="Titulo">
+            <input type="text" name="text" placeholder="Texto">
+            <input type="submit" value="Criar">
+        </form>
+        <section class="c-tasklist base">
+            {% if task_list %}
+                <ul>
+                {% for task in task_list %}
+                    <li><a href="/{{ task.id }}/">- {{ task.title_task }}</a></li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p>Sem tasks.</p>
+            {% endif %}
+        </section>
+    </main>
+</body>
+</html>
