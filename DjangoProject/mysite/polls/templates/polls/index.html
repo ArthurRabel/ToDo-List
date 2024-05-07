@@ -27,10 +27,7 @@
                         
                         <span></span>
                         <div class="c-tasklist__options">
-                            <form action="{% url 'delete' task.id %}" method="post">
-                                {% csrf_token %}
-                                <input type="submit" value="Excluir">
-                            </form>
+                            <input type="submit" id="{{task.id}}" class="c-tasklist__delete" value="Excluir">
                             <form action="{% url 'edit' task.id %}" method="post">
                                 {% csrf_token %}
                                 <input type="submit" value="Editar">
@@ -45,5 +42,25 @@
             {% endif %}
         </section>
     </main>
+    <script>
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+        document.querySelectorAll('.c-tasklist__delete').forEach(button => {
+            button.addEventListener('click', (event) =>{
+                fetch(`http://localhost:8000/polls/delete/${button.id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRFToken': csrftoken 
+                    }
+                })
+                    .then(response => {
+                        window.location.reload();
+                    })
+                    .catch(error => {
+                        console.error('Fetch error:', error);
+                    });
+            })
+        })
+    </script>
 </body>
 </html>

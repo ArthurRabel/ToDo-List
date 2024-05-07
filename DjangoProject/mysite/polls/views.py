@@ -20,7 +20,7 @@ def push(request):
         return redirect('index')
     
 def delete(request, task_id):
-    if request.method == 'POST':
+    if request.method == 'DELETE':
         Task.objects.get(pk=task_id).delete()
         return redirect('index')
     
