@@ -1,10 +1,9 @@
 ## Iniciar projeto pela primeira vez
 
-### Container DB PostgreSql
+### Criando as images
 
-Para o software funcionar antes de rodar o container do django é necessario o container do postgreSql já está rodando. 
 
-- Vá para a pasta correta
+- Vá para a pasta em que está o dockerfile do banco
 
 ```bash
 cd PostgreProject
@@ -16,9 +15,7 @@ cd PostgreProject
 podman build -t psqlimage .
 ```
 
-### Container Django
-
-- Vá para a pasta correta
+- Vá para a pasta em que está o dockerfile do site
 
 ```bash
 cd ../DjangoProject/mysite
@@ -50,11 +47,5 @@ podman kube play pod.yaml
 - Interagir via terminal com container Django
 
 ```bash
-podman exec -it djangocontainer bash
-```
-
-- Atualizar banco de dados
-
-```bash
-python manage.py migrate
+podman exec -it [ContainerName] bash
 ```

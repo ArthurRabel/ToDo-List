@@ -19,7 +19,25 @@
             {% if task_list %}
                 <ul>
                 {% for task in task_list %}
-                    <li><a href="/{{ task.id }}/">- {{ task.title_task }}</a></li>
+                    <li>
+                        <div class="c-tasklist__task">
+                            <h3>{{ task.title_task }}</h3>
+                            <p>{{ task.text_task }}</p>
+                        </div>
+                        
+                        <span></span>
+                        <div class="c-tasklist__options">
+                            <form action="{% url 'delete' task.id %}" method="post">
+                                {% csrf_token %}
+                                <input type="submit" value="Excluir">
+                            </form>
+                            <form action="{% url 'edit' task.id %}" method="post">
+                                {% csrf_token %}
+                                <input type="submit" value="Editar">
+                            </form>
+                        </div>
+
+                    </li>
                 {% endfor %}
                 </ul>
             {% else %}

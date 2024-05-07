@@ -8,5 +8,3 @@ ADD https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.s
 RUN chmod +x /wait-for-it.sh
 
 COPY . .
-
-EXPOSE 8000
