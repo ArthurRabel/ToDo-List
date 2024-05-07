@@ -1,0 +1,3 @@
+DjangoProject/venv/*
+
+*/__pycache__/*
