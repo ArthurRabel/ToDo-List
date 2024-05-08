@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do list</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <main>
+        <form class="c-form base" action="{% url 'post' %}" method="post">
+            {% csrf_token %}
+            <input type="text" name="title" placeholder="Titulo">
+            <input type="text" name="text" placeholder="Texto">
+            <input type="submit" value="Criar">
+        </form>
+        <section class="c-tasklist base">
+            {% if task_list %}
+                <ul>
+                {% for task in task_list %}
+                    <li>
+                        <div class="c-tasklist__task">
+                            <h3>{{ task.title_task }}</h3>
+                            <p>{{ task.text_task }}</p>
+                        </div>
+                        
+                        <span></span>
+                        <div class="c-tasklist__options">
+                            <input type="submit" id="{{task.id}}" class="c-tasklist__delete" value="Excluir">
+                            <form action="{% url 'edit' task.id %}" method="post">
+                                {% csrf_token %}
+                                <input type="submit" value="Editar">
+                            </form>
+                        </div>
+
+                    </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p>Sem tasks.</p>
+            {% endif %}
+        </section>
+    </main>
+    <script>
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+        document.querySelectorAll('.c-tasklist__delete').forEach(button => {
+            button.addEventListener('click', (event) =>{
+                fetch(`http://localhost:8000/polls/delete/${button.id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRFToken': csrfToken,
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => {
+                    window.location.reload();
+                })
+                .catch(error => {
+                    console.error('Fetch error:', error);
+                });
+            })
+        })
+    </script>
+</body>
+</html>

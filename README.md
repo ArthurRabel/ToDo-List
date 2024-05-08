@@ -1,18 +1,9 @@
 ## Iniciar projeto pela primeira vez
 
-### Criando a rede
+### Criando as images
 
-A aplicação consiste em dois containers: um contendo a aplicação Django e outro contendo o banco de dados PostgreSQL. Para permitir a comunicação entre esses containers, é necessário criar uma rede.
 
-```bash
-podman network create minharede
-```
-
-### Container DB PostgreSql
-
-Para o software funcionar antes de rodar o container do django é necessario o container do postgreSql já está rodando. 
-
-- Vá para a pasta correta
+- Vá para a pasta em que está o dockerfile do banco
 
 ```bash
 cd PostgreProject
@@ -24,18 +15,10 @@ cd PostgreProject
 podman build -t psqlimage .
 ```
 
-- Criar e rodar o container DB PostgreSql
+- Vá para a pasta em que está o dockerfile do site
 
 ```bash
-podman run --network=minharede -it -p 5432:5432 --name psqlcontainer psqlimage
-```
-
-### Container Django
-
-- Vá para a pasta correta
-
-```bash
-cd DjangoProject/mysite
+cd ../DjangoProject/mysite
 ```
 
 - Cria a imagem do Django
@@ -44,36 +27,25 @@ cd DjangoProject/mysite
 podman build -t djangoimage .
 ```
 
-- Cria e roda o container Django
-
-```bash
-podman run --network=minharede -it -p 8000:8000 --name djangocontainer djangoimage
-```
-
 ## Rodar o projeto
 
-- Rodar o container PostgreSql
+- Volte para pasta Raiz
 
 ```bash
-podman start psqlcontainer 
+cd ../..
 ```
 
-- Rodar o container Django
+- Rodar o Pod da aplicação
 
 ```bash
-podman start djangocontainer 
+podman kube play pod.yaml
 ```
+
 
 ## Interagir com os containers via terminal
-
-- Interagir via terminal com container PostgreSql
-
-```bash
-podman exec -it psqlcontainer bash
-```
 
 - Interagir via terminal com container Django
 
 ```bash
-podman exec -it djangocontainer bash
+podman exec -it [ContainerName] bash
 ```

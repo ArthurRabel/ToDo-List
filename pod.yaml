@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-test
+  labels:
+    app: web
+spec:
+  containers:
+    - name: banco
+      image: localhost/psqlimage
+      ports:
+        - containerPort: 5432
+    - name: web
+      image: localhost/djangoimage
+      ports:
+        - containerPort: 8000
+          hostPort: 8000
+      command: ["/bin/sh", "-c"]
+      args:
+        - >
+          /wait-for-it.sh banco:5432 --timeout=30 --strict;
+          python manage.py migrate;
+          python manage.py runserver 0.0.0.0:8000

@@ -1,0 +1,65 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #1d1d1d;
+}
+main{
+    width: 90%;
+    max-width: 500px;
+    margin: 25vh auto;
+}
+
+.base{
+    background-color: #292929;
+    padding: 20px;
+    border-radius: 3px;
+    color: white;
+}
+p{
+    margin-bottom: 10px;
+}
+
+input{
+    border: none;
+    border-radius: 2px;
+    padding: 5px;
+    height: 30px;
+}
+input[type="submit"]{
+    width: 85px;
+    background-color: #6527da;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+}
+.c-tasklist__task{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.c-tasklist__options{
+    display: flex;
+    gap: 10px;
+}
+.c-form{
+    margin-bottom: 15px;
+}
+
+.c-tasklist ul{
+    list-style: none;
+}
+.c-tasklist a{
+    color: white;
+    text-decoration: none;
+}
+.c-tasklist li{
+    margin: 7px 0;
+    padding: 5px 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(68, 68, 68);
+}
