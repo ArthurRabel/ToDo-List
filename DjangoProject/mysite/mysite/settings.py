@@ -19,9 +19,6 @@ SECRET_KEY = 'django-insecure-hy**eem9zg21rmvlvfot!mbxrk-g826$t=_&6oli2st+*+#fq1
 # SECURITY WARNING: don't run with deb   turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -74,7 +71,7 @@ DATABASES = {
         'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': 'teste123',
-        'HOST': 'localhost',
+        'HOST': 'pod-test-banco',
         'PORT': '5432',
     }
 }
@@ -120,3 +117,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'POST',
+    'PUT',
+]

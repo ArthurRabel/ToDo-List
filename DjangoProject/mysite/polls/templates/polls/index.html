@@ -9,7 +9,7 @@
 </head>
 <body>
     <main>
-        <form class="c-form base" action="{% url 'push' %}" method="post">
+        <form class="c-form base" action="{% url 'post' %}" method="post">
             {% csrf_token %}
             <input type="text" name="title" placeholder="Titulo">
             <input type="text" name="text" placeholder="Texto">
@@ -43,22 +43,23 @@
         </section>
     </main>
     <script>
-        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
         document.querySelectorAll('.c-tasklist__delete').forEach(button => {
             button.addEventListener('click', (event) =>{
                 fetch(`http://localhost:8000/polls/delete/${button.id}`, {
                     method: 'DELETE',
                     headers: {
-                        'X-CSRFToken': csrftoken 
+                        'X-CSRFToken': csrfToken,
+                        'Content-Type': 'application/json'
                     }
                 })
-                    .then(response => {
-                        window.location.reload();
-                    })
-                    .catch(error => {
-                        console.error('Fetch error:', error);
-                    });
+                .then(response => {
+                    window.location.reload();
+                })
+                .catch(error => {
+                    console.error('Fetch error:', error);
+                });
             })
         })
     </script>

@@ -1,3 +1,5 @@
+import json
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from .models import Task
 
@@ -12,7 +14,7 @@ def edit(request, task_id):
         context = {"task_selected": task_selected}  
         return render(request, "polls/taskEdit.html", context)
 
-def push(request):
+def post(request):
     if request.method == 'POST':
         title = request.POST['title']
         text = request.POST['text']
@@ -22,12 +24,11 @@ def push(request):
 def delete(request, task_id):
     if request.method == 'DELETE':
         Task.objects.get(pk=task_id).delete()
-        return redirect('index')
     
-def update(request, task_id):
-    if request.method == 'POST':
+def put(request, task_id):
+    if request.method == 'PUT':
+        data = json.loads(request.body)
         task = Task.objects.get(pk=task_id)
-        task.title_task = request.POST['title']
-        task.text_task = request.POST['text']
+        task.title_task = data['title']
+        task.text_task = data['text']
         task.save()
-        return redirect('index')

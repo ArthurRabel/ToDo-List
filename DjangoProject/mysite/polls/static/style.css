@@ -26,6 +26,7 @@ input{
     border: none;
     border-radius: 2px;
     padding: 5px;
+    height: 30px;
 }
 input[type="submit"]{
     width: 85px;

@@ -9,12 +9,41 @@
 </head>
 <body>
     <main class="c-task base">
-        <form action="{% url 'update' task_selected.id %}" method="post">
+        <div >
             {% csrf_token %}
-            <input type="text" name="title" value="{{ task_selected.title_task }}">
-            <input type="text" name="text" value="{{ task_selected.text_task }}">
-            <input type="submit" value="Atualizar">
-        </form>
+            <input id="title" type="text" name="title" value="{{ task_selected.title_task }}">
+            <input id="text" type="text" name="text" value="{{ task_selected.text_task }}">
+            <input class="btn_submit" id="{{task_selected.id}}" type="submit" value="Atualizar">
+        </div>
     </main>
+    <script>
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        let submit = document.querySelector(".btn_submit");
+
+        submit.addEventListener('click', (event) =>{
+            const titleform = document.querySelector("#title").value;
+            const textform = document.querySelector("#text").value;
+
+            const data = {
+                title: titleform,
+                text: textform
+            };
+
+            fetch(`http://localhost:8000/polls/put/${submit.id}/`, {
+                method: "PUT",
+                headers: {
+                    'X-CSRFToken': csrfToken,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                window.location.href = 'http://localhost:8000/polls/';
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+            });
+        })
+    </script>
 </body>
 </html>
