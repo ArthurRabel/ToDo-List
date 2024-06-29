@@ -71,7 +71,7 @@ DATABASES = {
         'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': 'teste123',
-        'HOST': 'pod-test-banco',
+        'HOST': 'to-do-banco',
         'PORT': '5432',
     }
 }

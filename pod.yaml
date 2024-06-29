@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: pod-test
+  name: to-do
   labels:
-    app: web
+    app: to-do
 spec:
   containers:
     - name: banco
